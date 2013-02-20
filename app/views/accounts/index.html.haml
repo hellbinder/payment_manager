@@ -1,0 +1,33 @@
+.block
+  .secondary-navigation
+    %ul.wat-cf
+      %li.first.active= link_to "#{t("web-app-theme.list", :default => "List")}", accounts_path
+      %li= link_to "#{t("web-app-theme.new", :default => "New")}", new_account_path
+  .content
+    %h2.title
+      = t("web-app-theme.all", :default => "All")
+      Accounts
+    .inner
+      %table.table
+        %tr
+          %th.first ID
+          %th
+            = t("activerecord.attributes.account.name", :default => t("activerecord.labels.name", :default => "Name"))
+          %th= t("web-app-theme.created_at", :default => "Created at")
+          %th.last &nbsp;
+        - @accounts.each do |account|
+          %tr{:class => cycle("odd", "even")}
+            %td
+              = account.id
+            %td
+              = link_to account.name, account_path(account)
+            %td
+              = account.created_at
+            %td.last
+              = link_to "#{t("web-app-theme.show", :default => "Show")}", account_path(account)
+              |
+              \#{link_to "#{t("web-app-theme.edit", :default => "Edit")}", edit_account_path(account)} |
+              \#{link_to "#{t("web-app-theme.delete", :default => "Delete")}", account_path(account), :method => :delete, :confirm => "#{t("web-app-theme.confirm", :default => "Are you sure?")}"}
+      .actions-bar.wat-cf
+        .actions
+- content_for :sidebar, render(:partial => 'sidebar')

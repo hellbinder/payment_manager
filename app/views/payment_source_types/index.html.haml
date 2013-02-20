@@ -1,0 +1,34 @@
+.block
+  .secondary-navigation
+    %ul.wat-cf
+      %li.first.active= link_to "#{t("web-app-theme.list", :default => "List")}", payment_source_types_path
+      %li= link_to "#{t("web-app-theme.new", :default => "New")}", new_payment_source_type_path
+  .content
+    %h2.title
+      = t("web-app-theme.all", :default => "All")
+      Payment Source Types
+    .inner
+      %table.table
+        %tr
+          %th.first ID
+          %th
+            = t("activerecord.attributes.payment_source_type.name", :default => t("activerecord.labels.name", :default => "Name"))
+          %th= t("web-app-theme.created_at", :default => "Created at")
+          %th.last &nbsp;
+        - @payment_source_types.each do |payment_source_type|
+          %tr{:class => cycle("odd", "even")}
+            %td
+              = payment_source_type.id
+            %td
+              = link_to payment_source_type.name, payment_source_type_path(payment_source_type)
+            %td
+              = payment_source_type.created_at.strftime("%m/%d/%Y at %I:%M %p")
+            %td.last
+              = link_to "#{t("web-app-theme.show", :default => "Show")}", payment_source_type_path(payment_source_type)
+              |
+              \#{link_to "#{t("web-app-theme.edit", :default => "Edit")}", edit_payment_source_type_path(payment_source_type)} |
+              \#{link_to "#{t("web-app-theme.delete", :default => "Delete")}", payment_source_type_path(payment_source_type), :method => :delete, :confirm => "#{t("web-app-theme.confirm", :default => "Are you sure?")}"}
+      .actions-bar.wat-cf
+        .actions
+        -#= will_paginate @payment_source_types
+- content_for :sidebar, render(:partial => 'sidebar')

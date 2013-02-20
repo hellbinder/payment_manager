@@ -1,0 +1,10 @@
+!!!
+%html
+  %head
+    %title My Payment Manager
+    = stylesheet_link_tag :application
+    = csrf_meta_tag
+  %body
+    #container
+      #box
+        = yield

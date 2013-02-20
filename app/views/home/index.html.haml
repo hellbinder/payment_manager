@@ -1,0 +1,10 @@
+#block-text.block
+  .content
+    %h2.title Overview
+    .inner
+      %span.gray= "The following is an overview of the expenses for the current month (#{Date::MONTHNAMES[Date.today.month]})"
+      %h2 Open accounts
+
+
+
+- content_for :sidebar, render(partial: 'sidebar')

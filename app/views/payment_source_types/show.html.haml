@@ -1,0 +1,23 @@
+.block
+  .secondary-navigation
+    %ul.wat-cf
+      %li.first= link_to "#{t("web-app-theme.list", :default => "List")}", payment_source_types_path
+      %li= link_to "#{t("web-app-theme.new", :default => "New")}", new_payment_source_type_path
+      %li.active= link_to "#{t("web-app-theme.show", :default => "Show")}", payment_source_type_path
+  .content
+    .inner
+      %p
+        %b
+          = t("activerecord.attributes.payment_source_type.name", :default => t("activerecord.labels.name", :default => "Name"))
+          \:
+        = @payment_source_type.name
+      %p
+        %b
+          = t("activerecord.attributes.payment_source_type.description", :default => t("activerecord.labels.description", :default => "Description"))
+          \:
+        = @payment_source_type.description
+      .wat-cf
+        = link_to image_tag("web-app-theme/icons/application_edit.png", :alt => "#{t("web-app-theme.edit", :default=> "Edit")}") + " " + t("web-app-theme.edit", :default=> "Edit"), edit_payment_source_type_path(@payment_source_type), :class => "button"
+        = link_to image_tag("web-app-theme/icons/cross.png", :alt => "#{t("web-app-theme.delete", :default=> "Delete")}") + " " + t("web-app-theme.delete", :default => "Delete"), payment_source_type_path(@payment_source_type), :method => "delete", :class => "button", :confirm => "#{t("web-app-theme.confirm", :default => "Are you sure?")}"
+- content_for :sidebar, render(:partial => 'sidebar')
+l
