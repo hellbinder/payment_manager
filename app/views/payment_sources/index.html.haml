@@ -5,32 +5,31 @@
       %li= link_to "#{t("web-app-theme.new", :default => "New")}", new_payment_source_path
   .content
     %h2.title
-      = t("web-app-theme.all", :default => "All")
+      = "All"
       Payment Sources
     .inner
       %table.table
         %tr
           %th.first ID
-          %th
-            = t("activerecord.attributes.payment_source.name", :default => t("activerecord.labels.name", :default => "Name"))
-          %th= t("web-app-theme.created_at", :default => "Type")
-          %th= t("web-app-theme.created_at", :default => "Created at")
+          %th Name
+          %th Type
+          %th Created at
+          %th Total Spent
           %th.last &nbsp;
         - @payment_sources.each do |payment_source|
           %tr{:class => cycle("odd", "even")}
-            %td
-              = payment_source.id
-            %td
-              = link_to payment_source.name, payment_source_path(payment_source)
-            %td
-              = payment_source.payment_source_type.name
-            %td
-              = payment_source.created_at.strftime("%m/%d/%Y at %I:%M %p")
+            %td= payment_source.id
+            %td= link_to payment_source.name, payment_source_path(payment_source)
+            %td= payment_source.payment_source_type.name
+            %td= payment_source.created_at.strftime("%m/%d/%Y at %I:%M %p")
+            %td= number_to_currency(payment_source.total_by_month)
+
+
             %td.last
-              = link_to "#{t("web-app-theme.show", :default => "Show")}", payment_source_path(payment_source)
+              = link_to "Show", payment_source_path(payment_source)
               |
-              \#{link_to "#{t("web-app-theme.edit", :default => "Edit")}", edit_payment_source_path(payment_source)} |
-              \#{link_to "#{t("web-app-theme.delete", :default => "Delete")}", payment_source_path(payment_source), :method => :delete, :confirm => "#{t("web-app-theme.confirm", :default => "Are you sure?")}"}
+              \#{link_to "Edit", edit_payment_source_path(payment_source)} |
+              \#{link_to "Delete", payment_source_path(payment_source), :method => :delete, :confirm => "#{t("web-app-theme.confirm", :default => "Are you sure?")}"}
       .actions-bar.wat-cf
         .actions
         = will_paginate @payment_sources

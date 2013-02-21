@@ -21,6 +21,18 @@
           = t("activerecord.attributes.payment_source.description", :default => t("activerecord.labels.description", :default => "Description"))
           \:
         = @payment_source.description
+        %hr
+        %table.table
+          %tr
+            %th Date
+            %th Amount
+            %th Detail
+            %th.last &nbsp;
+          - @transactions.each do |trans|
+            %tr{:class => cycle("odd", "even")}
+              %td= trans.created_at.strftime("%m/%d/%Y at %I:%M %p")
+              %td= number_to_currency(trans.amount, unit: '$')
+              %td= trans.memo
       .wat-cf
         = link_to image_tag("web-app-theme/icons/application_edit.png", :alt => "#{t("web-app-theme.edit", :default=> "Edit")}") + " " + t("web-app-theme.edit", :default=> "Edit"), edit_payment_source_path(@payment_source), :class => "button"
         = link_to image_tag("web-app-theme/icons/cross.png", :alt => "#{t("web-app-theme.delete", :default=> "Delete")}") + " " + t("web-app-theme.delete", :default => "Delete"), payment_source_path(@payment_source), :method => "delete", :class => "button", :confirm => "#{t("web-app-theme.confirm", :default => "Are you sure?")}"
