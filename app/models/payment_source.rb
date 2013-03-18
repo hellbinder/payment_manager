@@ -11,6 +11,6 @@ class PaymentSource < ActiveRecord::Base
 
   def total_by_month()
     Transaction.sum(:amount, conditions: {created_at:
-                                              (Date.today.at_beginning_of_month..Date.today.at_end_of_month)})
+      (Date.today.at_beginning_of_month..Date.today.at_end_of_month)})
   end
 end
