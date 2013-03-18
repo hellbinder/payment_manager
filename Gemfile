@@ -22,6 +22,8 @@ group :development, :test do
   gem 'better_errors'
   gem 'faker'
   gem 'factory_girl_rails'
+  gem 'binding_of_caller'
+  gem 'meta_request'
 end
 
 # Gems used only for assets and not required
