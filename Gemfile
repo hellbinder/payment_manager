@@ -1,9 +1,9 @@
 source 'https://rubygems.org'
 
 gem 'rails', '3.2.9'
-
-# Bundle edge Rails instead:
-# gem 'rails', :git => 'git://github.com/rails/rails.git'
+#for rvm
+#ruby=1.9.3
+#ruby-gemset=mickey
 
 gem 'mysql2'
 gem 'haml'
@@ -22,7 +22,6 @@ group :development, :test do
   gem 'better_errors'
   gem 'faker'
   gem 'factory_girl_rails'
-  gem 'binding_of_caller'
   gem 'meta_request'
 end
 
